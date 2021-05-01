@@ -1,17 +1,16 @@
 package sg.edu.np.practical2;
 
 public class User {
-    private String name;
-    private String Description;
-    private int id;
-    private boolean followed;
+    public String name;
+    public String Description;
+    public int id;
+    public boolean followed;
 
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
+    public User(String name, String description, int id, boolean followed) {
+        this.name = name;
         Description = description;
+        this.id = id;
+        this.followed = followed;
     }
 
     public String getName() {
@@ -22,6 +21,16 @@ public class User {
         this.name = name;
     }
 
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -29,6 +38,7 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public boolean isFollowed() {
         return followed;

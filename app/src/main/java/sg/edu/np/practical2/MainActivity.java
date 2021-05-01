@@ -18,43 +18,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.v(TAG, "On Create!");
 
-        User user = new User();
-        //user.getDescription();
-        //user.getName();
-
-        // Storing the values into variables
-        String name = user.getName();               // Store User's Name
-        String desc = user.getDescription();        // Store User's Name
-
         // Identifying Widgets
         Button button = findViewById(R.id.button);  // Identify button (Follow)
         Button button2 = findViewById(R.id.button2);  // Identify button2 (Message)
-
         TextView textView = findViewById(R.id.textView); // Identify TextView (Name)
         TextView textView2 = findViewById(R.id.textView2); // Identify TextView (Description)
 
-        // Update Text if name is not empty
-        if (name != null){
-            textView.setText(name);
-        }
-        else {
-            textView.setText("Hello World!");
-        }
+        // Create object
+        User user = new User("Random Octopus","Octopuses have 3 hearts, because " +
+                "two pump blood to the gills and a larger heart circulates blood to the rest of the body." +
+                " Octopuses have 9 brains because, in addition to the central brain, each of 8 arms has a " +
+                "mini-brain that allows it to act independently.", 1, true);
 
-        // Update text if description is not empty
-        if (desc != null){
-            textView2.setText(desc);
-        }
-        else {
-            textView2.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        }
+        // Initialize name and description texts from the User object
+        textView.setText(user.name);
+        textView2.setText(user.Description);
 
         //  initialize Button Text based on Followed Bool
-        if (user.isFollowed() == true){
+        if (user.followed == true){
             button.setText("Unfollow");
-        }
-        else if (user.isFollowed() == false){
-            button.setText("Follow");
         }
         else {
             button.setText("Follow");
@@ -64,21 +46,16 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (user.isFollowed() == true) {
+                if (user.followed == true) {
                     button.setText("Follow");
                     user.setFollowed(false);
                 }
-                else if (user.isFollowed() == false){
+                else{
                     button.setText("Unfollow");
                     user.setFollowed(true);
                 }
-                else {
-                    button.setText("Follow");
-                    user.setFollowed(false);
-                }
             }
         });
-
     }
     @Override
     protected void onStart(){
